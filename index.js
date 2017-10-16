@@ -23,6 +23,9 @@ app.use('/',function(req,res,next){
     next();
 });
 
+app.set("port", (process.env.PORT || 5000));
+
+
 let login = require('./Login/loginRoute.js');
 app.use('/api',login);
 
@@ -61,4 +64,7 @@ app.use('/api',tokoRoute);
 
 //mong.connect('mongodb://localhost:27017/DBapotek');
 mong.connect('mongodb://egi:egi1213@ds121225.mlab.com:21225/dbapotek');
-app.listen(8889);
+// app.listen(8889);
+var server = app.listen(app.get('port'), function(){
+    console.log('Node Connect App Running at http://%s:%s', server.address().address, server.address().port);
+});
